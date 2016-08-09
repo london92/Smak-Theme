@@ -70,7 +70,7 @@ header {
 .right_arrow img:hover{
     cursor: pointer;
 }
-div.content[data-vision-none]{
+.vision_none{
     display: none;
 }
 .content h2{

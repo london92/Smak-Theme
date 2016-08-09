@@ -11,24 +11,80 @@ window.onload = function () {
     height_detect();
     //при измениние высоты окна браузера, меняется высота header
     window.addEventListener("resize",height_detect);
-    
+
+    //Плавный скролл
+
     //header slider
     var left_arrow = document.querySelector(".left_arrow img");
     var right_arrow = document.querySelector(".right_arrow img");
     var all_content = document.querySelectorAll(".content");
     function slide() {
         for(var i = 0; i < all_content.length; i++){
-            var data = all_content[i].dataset;
-            if(data.visionVisible){
-                data
-                /*all_content[i].setAttribute("data-vision-none ","none");
-                all_content[i + 1].setAttribute("data-vision-visible","visible");*/
-                break;
+            if(all_content[i].classList.contains("vision_visible")){
+                //проверка для последнего слайда
+                if(i == 2){
+                    all_content[i].classList.toggle("vision_visible");
+                    all_content[i].classList.toggle("vision_none");
+                    all_content[0].classList.toggle("vision_none");
+                    all_content[0].classList.toggle("vision_visible");
+                    break;
+                }
+                else{
+                    all_content[i].classList.toggle("vision_visible");
+                    all_content[i].classList.toggle("vision_none");
+                    all_content[i + 1].classList.toggle("vision_none");
+                    all_content[i + 1].classList.toggle("vision_visible");
+                    break;
+                }
+
             }
         }
     }
-    slide();
-    
+
+    //задаем дефолтную прокрутку слайдов
+    var header_slider = setInterval(slide, 3000);
+
+    //настраиваем стрелки прокрутки контента
+    right_arrow.addEventListener("click", function () {
+        clearInterval(header_slider);
+        slide();
+        
+        //delay 5sec
+        clearTimeout(right_arrow_timeout);
+        var right_arrow_timeout = setTimeout(function () {
+            clearInterval(header_slider);
+            header_slider = setInterval(slide, 3000);
+        },5000);
+
+    })
+    left_arrow.addEventListener("click", function () {
+        clearInterval(header_slider);
+        for(var i = 0; i < all_content.length; i++){
+            if(all_content[i].classList.contains("vision_visible")){
+                //проверка для последнего слайда
+                if(i == 0){
+                    all_content[i].classList.toggle("vision_visible");
+                    all_content[i].classList.toggle("vision_none");
+                    all_content[2].classList.toggle("vision_none");
+                    all_content[2].classList.toggle("vision_visible");
+                    break;
+                }
+                else{
+                    all_content[i].classList.toggle("vision_visible");
+                    all_content[i].classList.toggle("vision_none");
+                    all_content[i - 1].classList.toggle("vision_none");
+                    all_content[i - 1].classList.toggle("vision_visible");
+                    break;
+                }
+
+            }
+        }
+        clearTimeout(left_arrow_timeout);
+        var left_arrow_timeout = setTimeout(function () {
+            clearInterval(header_slider);
+            header_slider = setInterval(slide, 3000);
+        },5000);
+    })
     
     //изменение картинки, при наведение на него в секции service.Так же меняет высоту контейнера.
     var service_img = document.getElementsByClassName("service_img");
