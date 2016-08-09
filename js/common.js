@@ -12,8 +12,6 @@ window.onload = function () {
     //при измениние высоты окна браузера, меняется высота header
     window.addEventListener("resize",height_detect);
 
-    //Плавный скролл
-
     //header slider
     var left_arrow = document.querySelector(".left_arrow img");
     var right_arrow = document.querySelector(".right_arrow img");
@@ -48,7 +46,7 @@ window.onload = function () {
     right_arrow.addEventListener("click", function () {
         clearInterval(header_slider);
         slide();
-        
+
         //delay 5sec
         clearTimeout(right_arrow_timeout);
         var right_arrow_timeout = setTimeout(function () {
@@ -86,59 +84,113 @@ window.onload = function () {
         },5000);
     })
     
-    //изменение картинки, при наведение на него в секции service.Так же меняет высоту контейнера.
+    //изменение картинки, при наведение на него в секции service и увеличивает размер на 10%
     var service_img = document.getElementsByClassName("service_img");
-    var service_img_height = 110;
-    var service_img_width = 110;
     for(var i = 0; i < service_img.length; i++){
         if(i == 0){
             service_img[i].addEventListener("mouseover", function () {
                 service_img[0].firstChild.setAttribute("src", "img/service_web_hover.png");
-              /*  var bigger_size = setInterval(function () {
-                    if(service_img_height >= 121){
-                        clearInterval(bigger_size);
-                    }
-                    service_img_height +=1;
-                    service_img_width +=1;
-                    service_img[0].style.height = service_img_height +"px";
-                    service_img[0].style.width = service_img_width + "px";
-                }, 100)
-                bigger_size;*/
+                service_img[0].style.cssText = "width:121px;height:121px;padding:41px;"
             })
             service_img[i].addEventListener("mouseout", function () {
                 service_img[0].firstChild.setAttribute("src", "img/service_web.png");
-                clearInterval(bigger_size);
-               /* service_img_height = 110;
-                service_img_width = 110;
-                service_img[0].style.height = service_img_height +"px";
-                service_img[0].style.width = service_img_width + "px";*/
+                service_img[0].style.cssText= "width:110px;height:110px;padding:36px;"
             })
         }
         else if(i == 1){
             service_img[i].addEventListener("mouseover", function () {
                 service_img[1].firstChild.setAttribute("src", "img/service_graphic_hover.png");
+                service_img[1].style.cssText = "width:121px;height:121px;padding:41px;"
             })
             service_img[i].addEventListener("mouseout", function () {
                 service_img[1].firstChild.setAttribute("src", "img/service_graphic.png");
+                service_img[1].style.cssText= "width:110px;height:110px;padding:36px;"
             })
         }
         else if(i == 2){
             service_img[i].addEventListener("mouseover", function () {
                 service_img[2].firstChild.setAttribute("src", "img/service_photography_hover.png");
+                service_img[2].style.cssText = "width:121px;height:121px;padding:41px;"
             })
             service_img[i].addEventListener("mouseout", function () {
                 service_img[2].firstChild.setAttribute("src", "img/service_photography.png");
+                service_img[2].style.cssText= "width:110px;height:110px;padding:36px;"
             })
         }
         else if(i == 3){
             service_img[i].addEventListener("mouseover", function () {
                 service_img[3].firstChild.setAttribute("src", "img/service_develoing_hover.png");
+                service_img[3].style.cssText = "width:121px;height:121px;padding:41px;"
             })
             service_img[i].addEventListener("mouseout", function () {
                 service_img[3].firstChild.setAttribute("src", "img/service_develoing.png");
+                service_img[3].style.cssText= "width:110px;height:110px;padding:36px;"
             })
         }
     }
+
+    //Увеличение размера иконок на 10%
+   var how_we_do_img = document.querySelectorAll(".how_we_do_item img");
+    for(var i = 0; i < how_we_do_img.length; i++){
+        how_we_do_img[i].addEventListener("mouseover", function () {
+            this.style.width = 50 +"px";
+            this.style.height = 50 +"px";
+        });
+        how_we_do_img[i].addEventListener("mouseout", function () {
+            this.style.width = 45 +"px";
+            this.style.height = 45 +"px";
+        });
+        }
+    
+    //фильтр для портфолио
+    var portfolio_list = document.querySelectorAll(".portfolio_list li a");
+    var works_item = document.querySelectorAll(".works_item");
+    portfolio_list[0].addEventListener("click", function () {
+        for(var i =0; i < works_item.length; i++){
+            works_item[i].style.display ="block";
+        }
+    })
+    portfolio_list[1].addEventListener("click", function () {
+        for(var i =0; i < works_item.length; i++){
+                works_item[i].style.display ="block";
+            }
+        for(var i =0; i < works_item.length; i++){
+            if(!works_item[i].classList.contains("web_design")){
+                works_item[i].style.display ="none";
+            }
+        }
+    })
+    portfolio_list[2].addEventListener("click", function () {
+        for(var i =0; i < works_item.length; i++){
+            works_item[i].style.display ="block";
+        }
+        for(var i =0; i < works_item.length; i++){
+            if(!works_item[i].classList.contains("graphic_design")){
+                works_item[i].style.display ="none";
+            }
+        }
+    })
+    portfolio_list[3].addEventListener("click", function () {
+        for(var i =0; i < works_item.length; i++){
+            works_item[i].style.display ="block";
+        }
+        for(var i =0; i < works_item.length; i++){
+            if(!works_item[i].classList.contains("photography")){
+                works_item[i].style.display ="none";
+            }
+        }
+    })
+    portfolio_list[4].addEventListener("click", function () {
+        for(var i =0; i < works_item.length; i++){
+            works_item[i].style.display ="block";
+        }
+        for(var i =0; i < works_item.length; i++){
+            if(!works_item[i].classList.contains("illustration")){
+                works_item[i].style.display ="none";
+            }
+        }
+    })
+
     //меняем цвет стрелок на кнопке
     var contact_btn = document.getElementsByClassName("contact_btn")[0];
     var contact_btn_img = document.querySelector(".contact_btn img")
@@ -148,4 +200,81 @@ window.onload = function () {
     contact_btn.addEventListener("mouseout",function () {
         contact_btn_img.setAttribute("src", "img/arrows_contact_btn.png");
     })
+
+    //выводим количество довольных клиентов:)
+    var number = document.querySelectorAll(".we_are_proud_item h3")
+    window.onscroll = function () {
+        var scrolled = window.pageYOffset || document.documentElement.scrollTop;
+        if(scrolled >= 2800){
+           for (var i =0; i <number.length; i++){
+               if(i == 0){
+                   if(number[0].innerHTML !="1600"){
+                       number[0].innerHTML = "0";
+                       var clients_0 = +number[0].innerHTML;
+                       var count_clients_0 = setInterval(function () {
+                           clients_0+=160;
+                           number[0].innerHTML = clients_0;
+                       },300);
+                       setTimeout(function () {
+                           clearInterval(count_clients_0)
+                       },3000)
+                   }
+               }
+               else if(i == 1){
+                   if(number[1].innerHTML !="3200"){
+                       number[1].innerHTML = "0";
+                       var clients_1 = +number[1].innerHTML;
+                       var count_clients_1 = setInterval(function () {
+                           clients_1+=320;
+                           number[1].innerHTML = clients_1;
+                       },300);
+                       setTimeout(function () {
+                           clearInterval(count_clients_1)
+                       },3000)
+                   }
+               }
+               else if(i == 2){
+                   if(number[2].innerHTML !="40"){
+                       number[2].innerHTML = "0";
+                       var clients_2 = +number[2].innerHTML;
+                       var count_clients_2 = setInterval(function () {
+                           clients_2+=4;
+                           number[2].innerHTML = clients_2;
+                       },300);
+                       setTimeout(function () {
+                           clearInterval(count_clients_2)
+                       },3000)
+                   }
+               }
+               else if(i == 3){
+                   if(number[3].innerHTML !="20000"){
+                       number[3].innerHTML = "0";
+                       var clients_3 = +number[3].innerHTML;
+                       var count_clients_3 = setInterval(function () {
+                           clients_3+=2000;
+                           number[3].innerHTML = clients_3;
+                       },300);
+                       setTimeout(function () {
+                           clearInterval(count_clients_3)
+                       },3000)
+                   }
+               }
+           }
+        }
+    }
+    //Увеличиваем размеры иконок на 10%
+    var about_item_img = document.querySelectorAll(".about_item_img");
+    for(var i = 0; i < about_item_img.length; i++){
+        about_item_img[i].addEventListener("mouseover", function () {
+            this.style.width = 77 +"px";
+            this.style.height = 77 + "px";
+            this.style.padding = 3 + "px";
+        });
+        about_item_img[i].addEventListener("mouseout", function () {
+            this.style.width = 70 +"px";
+            this.style.height = 70 +"px";
+            this.style.padding = 0;
+        });
+    }
+
 }

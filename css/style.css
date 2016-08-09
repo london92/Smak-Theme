@@ -144,6 +144,7 @@ header {
     width: 110px;
     height: 110px;
     padding: 36px;
+    transition: all 0.5s;
 }
 .service_img:hover{
     background-color: #fff;
@@ -181,6 +182,7 @@ header {
 .how_we_do_item img{
     display: block;
     margin: 0 auto;
+    transition: all 0.5s;
 }
 .how_we_do_item h3{
     font-family: Oswald_bold;
@@ -214,6 +216,7 @@ header {
 }
 .portfolio_list li a:hover{
     color: #ffe600;
+    cursor: pointer;
 }
 .works{
     margin-top: 75px;
@@ -235,7 +238,6 @@ header {
     text-align: center;
     padding-top: 15%;
     opacity: 0;
-    -webkit-transition: all 0.5s;
     transition: all 0.5s;
 }
 .works_item:hover .works_item_hover {
@@ -340,11 +342,13 @@ header {
     font-size: 16px;
     text-transform: uppercase;
 }
+
 .about{
     margin-top: 40px;
 }
 .about_item{
     margin-top: 60px;
+    margin-bottom: 70px;
 }
 .about_item_img{
     height: 70px;
@@ -353,6 +357,10 @@ header {
     border-radius: 50%;
     float: left;
     margin-top: 60px;
+    transition: all 0.5s;
+}
+.bg_bright{
+    background-color: #fbfbfb;
 }
 .about_item_img img{
     display: block;
@@ -372,7 +380,7 @@ header {
     margin-top: 15px;
 }
 .team{
-    margin-top: 130px;
+    margin-top: 60px;
 }
 .team h2{
     text-align: center;
@@ -391,6 +399,8 @@ header {
 .team_item{
     margin-top: 60px;
     border-bottom: 2px solid #dfe4e5;
+    background-color: #fff;
+    margin-bottom: 60px;
 }
 .team_item img{
     display: block;
@@ -410,4 +420,68 @@ header {
     text-align: center;
     margin-top: 10px;
     text-transform: uppercase;
+}
+.team_social{
+    background-color: #131316;
+}
+.team_social_text h3{
+    text-align: left;
+    font-family: Oswald;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #ffe600;
+    margin-top: 65px;
+}
+.exit{
+    position: absolute;
+    top: 65px;
+    left: 100%;
+}
+.exit:hover{
+    cursor: pointer;
+}
+.team_social_text p{
+    margin-top: 20px;
+    color: #fff;
+    font-family: Oswald_light;
+    font-size: 16px;
+    text-align: left;
+}
+.social_icon{
+    border: 1px solid #fff;
+    margin: 25px 20px 40px 0;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    float: left;
+    padding: 3px 5px;
+}
+.social_icon a{
+    text-decoration: none;
+    color: #fff;
+}
+.team_skills{
+    background-color: #131a1d;
+}
+.team_skills h2{
+    font-family: Oswald_bold;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 60px;
+    text-transform: uppercase;
+    color: #fff;
+}
+.team_skills p{
+    font-family: Oswald_light;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 25px;
+    color: #fff;
+}
+.clients_slider{
+    margin-top: 80px;
+}
+.clients_slider_item img{
+    display: block;
+    margin: 0 auto 140px;
 }
