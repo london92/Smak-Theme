@@ -277,4 +277,113 @@ window.onload = function () {
         });
     }
 
+    // hover functions
+    function hover() {
+        var old_src = this.src;
+        old_src = old_src.split("");
+        var format = old_src.splice(old_src.length - 4, 4);
+        old_src = old_src.join("");
+        format = format.join("");
+        var new_src = old_src + "_hover" + format;
+        this.src = new_src;
+    }
+    function not_hover() {
+        var old_src = this.src;
+        old_src = old_src.split("");
+        old_src.splice(old_src.length - 10, 6);
+        old_src = old_src.join("");
+        this.src = old_src;
+    }
+
+    //hover clients
+    var clients_slider_img = document.querySelectorAll(".clients_slider_item img");
+    for (var i = 0; i < clients_slider_img.length; i++){
+        clients_slider_img[i].addEventListener("mouseover",hover);
+        clients_slider_img[i].addEventListener("mouseout",not_hover);
+    }
+
+    // slider clients
+    var clients_slider = document.querySelectorAll(".clients_slider");
+    function slide_clients() {
+        for(var i = 0; i < clients_slider.length; i++){
+            if(clients_slider[i].classList.contains("vision_visible")){
+                //проверка для последнего слайда
+                if(i == 1){
+                    clients_slider[i].classList.toggle("vision_visible");
+                    clients_slider[i].classList.toggle("vision_none");
+                    clients_slider[0].classList.toggle("vision_none");
+                    clients_slider[0].classList.toggle("vision_visible");
+                    break;
+                }
+                else{
+                    clients_slider[i].classList.toggle("vision_visible");
+                    clients_slider[i].classList.toggle("vision_none");
+                    clients_slider[i + 1].classList.toggle("vision_none");
+                    clients_slider[i + 1].classList.toggle("vision_visible");
+                    break;
+                }
+
+            }
+        }
+    }
+    var clients_slide = setInterval(slide_clients, 3000);
+
+    //client comments
+    var client_comment_item = document.querySelectorAll(".client_comment_item");
+    var client_comment_controls = document.querySelectorAll(".client_comment_controls");
+
+    client_comment_controls[0].addEventListener("click", function () {
+        for (var i = 0; i < client_comment_item.length; i++){
+            if(i == 0){
+                client_comment_item[i].classList.remove("vision_none")
+                client_comment_item[i].classList.add("vision_visible")
+            }
+            else {
+                client_comment_item[i].classList.remove("vision_visible")
+                client_comment_item[i].classList.add("vision_none")
+            }
+        }
+    })
+    client_comment_controls[1].addEventListener("click", function () {
+        for (var i = 0; i < client_comment_item.length; i++){
+            if(i == 1){
+                client_comment_item[i].classList.remove("vision_none")
+                client_comment_item[i].classList.add("vision_visible")
+            }
+            else {
+                client_comment_item[i].classList.remove("vision_visible")
+                client_comment_item[i].classList.add("vision_none")
+            }
+        }
+    })
+    client_comment_controls[2].addEventListener("click", function () {
+        for (var i = 0; i < client_comment_item.length; i++){
+            if(i == 2){
+                client_comment_item[i].classList.remove("vision_none")
+                client_comment_item[i].classList.add("vision_visible")
+            }
+            else {
+                client_comment_item[i].classList.remove("vision_visible")
+                client_comment_item[i].classList.add("vision_none")
+            }
+        }
+    })
+    client_comment_controls[3].addEventListener("click", function () {
+        for (var i = 0; i < client_comment_item.length; i++){
+            if(i == 3){
+                client_comment_item[i].classList.remove("vision_none")
+                client_comment_item[i].classList.add("vision_visible")
+            }
+            else {
+                client_comment_item[i].classList.remove("vision_visible")
+                client_comment_item[i].classList.add("vision_none")
+            }
+        }
+    })
+
+    //меняем изображение кнопки футера при наведение
+    var footer_img = document.querySelector("footer a img");
+    footer_img.addEventListener("mouseover",hover);
+    footer_img.addEventListener("mouseout",not_hover);
+
 }
