@@ -277,6 +277,152 @@ window.onload = function () {
         });
     }
 
+    //Круговая диаграмма
+    //canvas initialization
+    var canvas = document.getElementsByTagName("canvas")[0];
+    var canvas_context = canvas.getContext("2d");
+    //dimensions
+    var W = canvas.width;
+    var H = canvas.height;
+    //Variables
+    var degrees = 0;
+    var new_degrees_1 = 0;
+    var difference = 9;
+    var color = "#ffe600"; //green looks better to me
+    var bgcolor = "#fff";
+    var text;
+    var animation_loop;
+
+    function init(ctx)
+    {
+        //Clear the canvas everytime a chart is drawn
+        ctx.clearRect(0, 0, W, H);
+
+        //Background 360 degree arc
+        ctx.beginPath();
+        ctx.strokeStyle = bgcolor;
+        ctx.lineWidth = 5;
+        ctx.arc(W/2, H/2, 60, 0, Math.PI*2, false); //you can see the arc now
+        ctx.stroke();
+
+        //gauge will be a simple arc
+        //Angle in radians = angle in degrees * PI / 180
+        var radians = degrees * Math.PI / 180;
+        ctx.beginPath();
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 5;
+        //The arc starts from the rightmost end. If we deduct 90 degrees from the angles
+        //the arc will start from the topmost end
+        ctx.arc(W/2, H/2, 60, 0 - 270*Math.PI/180, radians - 270*Math.PI/180, false);
+        //you can see the arc now
+        ctx.stroke();
+
+        //Lets add the text
+        ctx.fillStyle = color;
+        ctx.font = "35px Oswald_light";
+        text = Math.floor(degrees/360*100) + "%";
+        //Lets center the text
+        //deducting half of text width from position x
+        text_width = ctx.measureText(text).width;
+        //adding manual value to position y since the height of the text cannot
+        //be measured easily. There are hacks but we will keep it manual for now.
+        ctx.fillText(text, W/2 - text_width/2, H/2 + 15);
+    }
+
+    function draw(a)
+    {
+        //Cancel any movement animation if a new chart is requested
+        if(typeof animation_loop != undefined) clearInterval(animation_loop);
+
+        //random degree from 0 to 360
+        new_degrees_1 = a;
+        difference = new_degrees_1 - degrees;
+        //This will animate the gauge to new positions
+        //The animation will take 1 second
+        //time for each frame is 1sec / difference in degrees
+        animation_loop = setInterval(animate_to, 1000/difference);
+    }
+
+    //function to make the chart move to new degrees
+    function animate_to()
+    {
+        //clear animation loop if degrees reaches to new_degrees
+        if(degrees > new_degrees_1)
+            clearInterval(animation_loop);
+
+        if(degrees <= new_degrees_1)
+            degrees++;
+        else
+            degrees--;
+
+        init(canvas_context);
+    }
+
+    //Lets add some animation for fun
+    draw(324);
+
+
+
+
+    //Открытие информации о члене команды
+    var team_img = document.querySelectorAll(".team_item img");
+    var team_skills = document.querySelectorAll(".team_skills")
+    for (var i = 0; i < team_img.length; i++){
+        if(i == 0){
+            team_img[i].addEventListener("click",function () {
+                for (var i = 0; i <team_social.length; i++) {
+                    if (!team_social[i].classList.contains("vision_none")) {
+                        team_social[i].classList.toggle("vision_none");
+                    }
+                }
+                team_social[0].classList.toggle("vision_none");
+
+            })
+        }
+        if(i == 1){
+            team_img[i].addEventListener("click",function () {
+                for (var i = 0; i <team_social.length; i++) {
+                    if (!team_social[i].classList.contains("vision_none")) {
+                        team_social[i].classList.toggle("vision_none");
+                    }
+                }
+                team_social[1].classList.toggle("vision_none");
+            })
+        }
+        if(i == 2){
+            team_img[i].addEventListener("click",function () {
+                for (var i = 0; i <team_social.length; i++) {
+                    if (!team_social[i].classList.contains("vision_none")) {
+                        team_social[i].classList.toggle("vision_none");
+                    }
+                }
+                team_social[2].classList.toggle("vision_none");
+            })
+        }
+        if(i == 3){
+            team_img[i].addEventListener("click",function () {
+                for (var i = 0; i <team_social.length; i++) {
+                    if (!team_social[i].classList.contains("vision_none")) {
+                        team_social[i].classList.toggle("vision_none");
+                    }
+                }
+                team_social[3].classList.toggle("vision_none");
+            })
+        }
+    }
+    // Кнопка закрытия информации о члене команды
+    var exit_button = document.querySelectorAll(".exit");
+    var team_social = document.querySelectorAll(".team_social")
+    for(var i = 0; i < exit_button.length; i++){
+        exit_button[i].addEventListener("click",function () {
+            for (var i = 0; i <team_social.length; i++){
+                if(!team_social[i].classList.contains("vision_none")){
+                    team_social[i].classList.toggle("vision_none");
+                }
+            }
+        })
+    }
+    
     // hover functions
     function hover() {
         var old_src = this.src;
@@ -386,4 +532,32 @@ window.onload = function () {
     footer_img.addEventListener("mouseover",hover);
     footer_img.addEventListener("mouseout",not_hover);
 
+    //Валидация формы
+    var input_name = document.querySelector("input[type='text']");
+    input_name.addEventListener("keypress", function () {
+        if(/[^A-Za-z]/.test(input_name.value)){
+            input_name.style.borderColor = "red";
+        }
+        else {
+            input_name.style.borderColor ="#fff"
+        }
+    });
+    var input_email = document.querySelector("input[type='email']");
+    input_email.addEventListener("keypress", function () {
+        if(/[^A-Za-z0-9@_.]/.test(input_email.value)){
+            input_email.style.borderColor ="red";
+        }
+        else {
+            input_email.style.borderColor = "#fff";
+        }
+    });
+    var input_subject = document.querySelectorAll("input[type='text']")[1];
+    input_subject.addEventListener("keypress", function () {
+        if(/[^A-Za-z0-9]/.test(input_subject.value)){
+            input_subject.style.borderColor ="red";
+        }
+        else {
+            input_subject.style.borderColor = "#fff";
+        }
+    });
 }

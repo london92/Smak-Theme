@@ -14,38 +14,32 @@ body{
     margin: 0;
     padding: 0;
 }
-nav {
-    position: fixed;
-    z-index: 1111;
-    height: 100px;
-    width: 100%;
+nav.navbar{
     background-color: rgba(19, 19, 22, .302);
+    border-bottom: none;
 }
-.logo{
-    display: inline-block;
-    margin: 15px;
+a.navbar-brand{
+    height: 100%;
 }
-nav ul{
-    float: right;
-}
-nav ul li{
-    text-transform: uppercase;
+ul.nav li a{
+    color: #fff;
     font-family: Oswald_bold;
     font-size: 14px;
-    display: inline-block;
-    margin: 40px 20px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 25px;
 }
-nav ul li a{
-    text-decoration: none;
-    color: #fff;
-}
-nav ul li a:hover{
+ul.nav li a:hover{
+    background-color: transparent;
     color: #ffe600;
-    text-decoration: none;
 }
-nav ul img{
+.active{
+    color: #ffe600;
+    background-color: transparent;
+}
+ul.nav li img{
     display: inline-block;
-    margin: 4px;
+    margin-top: 45px;
 }
 header {
     background-image: url("../img/bg.jpg");
@@ -404,6 +398,10 @@ header {
 }
 .team_item img{
     display: block;
+    margin: 0 auto;
+}
+.team_item img:hover{
+    cursor: pointer;
 }
 .team_item h3{
     color: #ffe600;
@@ -436,6 +434,7 @@ header {
     position: absolute;
     top: 65px;
     left: 100%;
+    z-index: 100;
 }
 .exit:hover{
     cursor: pointer;
@@ -477,6 +476,26 @@ header {
     text-align: center;
     margin-top: 25px;
     color: #fff;
+}
+.team_skills_item{
+    margin-top: 60px;
+    margin-bottom: 65px;
+}
+.team_skills_item_text{
+    text-align: center;
+    font-family: Oswald;
+    font-size: 20px;
+    color: #ffe600 !important;
+    margin-top: 25px;
+}
+.canvas_skills{
+    display: block;
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    font-family: Oswald_light;
+    font-size: 35px;
+    color: #ffe600;
 }
 .clients_slider{
     margin-top: 80px;
@@ -554,6 +573,9 @@ input{
     font-size: 15px;
     padding: 10px;
     margin-top: 60px;
+}
+input:focus{
+    border: 1px solid #fff;
 }
 textarea{
     margin-top: 30px;
