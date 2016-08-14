@@ -385,6 +385,24 @@ window.onload = function () {
                     }
                 }
                 team_social[0].classList.toggle("vision_none");
+                for(var i = 0; i < canvas.length; i++){
+                    if(i == 0){
+                        var canvas_context_0 = canvas[i].getContext("2d");
+                        draw(324,canvas_context_0);
+                    }
+                    else if(i == 1){
+                        var canvas_context_1 = canvas[i].getContext("2d");
+                        draw(346,canvas_context_1);
+                    }
+                    else if(i == 2){
+                        var canvas_context_2 = canvas[i].getContext("2d");
+                        draw(306,canvas_context_2);
+                    }
+                    else if(i == 3){
+                        var canvas_context_3 = canvas[i].getContext("2d");
+                        draw(339,canvas_context_3);
+                    }
+                }
 
             })
         }

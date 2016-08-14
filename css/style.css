@@ -281,6 +281,9 @@ header {
     font-size: 16px;
     margin-top: 25px;
 }
+.portfolio_contact a{
+    text-decoration: none;
+}
 .portfolio_contact_btn{
     background-color: #ffe600;
     margin: 60px auto 70px;
