@@ -33,6 +33,10 @@ ul.nav li a:hover{
     background-color: transparent;
     color: #ffe600;
 }
+ul.nav li a:focus{
+    background-color: transparent;
+    color: #ffe600;
+}
 .active{
     color: #ffe600;
     background-color: transparent;
